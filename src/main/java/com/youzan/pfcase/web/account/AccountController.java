@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.youzan.pfcase.service.AccountService;
-import com.youzan.pfcase.web.account.AccountForm.NewAccount;
 
 /**
  * @author liliang
@@ -33,24 +32,24 @@ public class AccountController {
 	@Autowired
     protected Mapper beanMapper;
 
-    @Autowired
-    protected AccountHelper accountHelper;
+//    @Autowired
+//    protected AccountHelper accountHelper;
 
     @Autowired
     protected AccountService accountService;
 
-    @Autowired
-    protected PasswordEqualsValidator passwordEqualsValidator;
+//    @Autowired
+//    protected PasswordEqualsValidator passwordEqualsValidator;
 
-    @InitBinder("accountForm")
-    public void initBinder(WebDataBinder webDataBinder) {
-        webDataBinder.addValidators(passwordEqualsValidator);
-    }
+//    @InitBinder("accountForm")
+//    public void initBinder(WebDataBinder webDataBinder) {
+//        webDataBinder.addValidators(passwordEqualsValidator);
+//    }
 
-    @ModelAttribute
-    public AccountForm setUpForm() {
-        return new AccountForm();
-    }
+//    @ModelAttribute
+//    public AccountForm setUpForm() {
+//        return new AccountForm();
+//    }
 
     @RequestMapping("signonForm")
     public String signonForm() {
@@ -62,16 +61,16 @@ public class AccountController {
         return "account/NewAccountForm";
     }
 
-    @RequestMapping("newAccount")
-    public String newAccount(@Validated({ NewAccount.class, Default.class }) AccountForm form, BindingResult result, ModelMap model) {
-        if (result.hasErrors()) {
-            return "account/NewAccountForm";
-        }
-        if (accountService.getAccount(form.getUsername()) != null) {
-            model.addAttribute("duplicatedUsers", "用户名已存在");
-            return "account/NewAccountForm";
-        }
-        accountHelper.newAccount(form);
-        return "redirect:/account/signonForm";
-    }
+//    @RequestMapping("newAccount")
+//    public String newAccount(@Validated({ NewAccount.class, Default.class }) AccountForm form, BindingResult result, ModelMap model) {
+//        if (result.hasErrors()) {
+//            return "account/NewAccountForm";
+//        }
+//        if (accountService.getAccount(form.getUsername()) != null) {
+//            model.addAttribute("duplicatedUsers", "用户名已存在");
+//            return "account/NewAccountForm";
+//        }
+//        accountHelper.newAccount(form);
+//        return "redirect:/account/signonForm";
+//    }
 }
